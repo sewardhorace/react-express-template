@@ -10,18 +10,18 @@ var buildDir = './src/dist/scripts/';
 
 function buildScript(entryFile, watch) {
   var props = {
-		entries: [scriptsDir + entryFile],
-		debug: true,
+    entries: [scriptsDir + entryFile],
+    debug: true,
     cache: {},
-    packageCache: {},
-	};
+    packageCache: {}
+  };
   var bundler = watch ? watchify(browserify(props)) : browserify(props);
   bundler.transform(babelify, {presets: ["react"]});
   function rebundle() {
     var stream = bundler.bundle();
     return stream.on('error', function(e){
-			gutil.log(e);
-		})
+      gutil.log(e);
+    })
     .pipe(source('bundle.js'))
     .pipe(gulp.dest(buildDir));
   }
@@ -33,9 +33,9 @@ function buildScript(entryFile, watch) {
 }
 
 gulp.task('build', function() {
-	return buildScript('main.js', false);
+  return buildScript('main.js', false);
 });
 
 gulp.task('default', function() {
-	return buildScript('main.js', true);
+  return buildScript('main.js', true);
 });
