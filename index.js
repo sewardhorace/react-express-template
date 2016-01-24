@@ -15,5 +15,5 @@ app.listen(3000, 'localhost', function(err) {
     return;
   }
 
-  console.log('MapDragon listening at http://localhost:3000');
+  console.log('app listening at http://localhost:3000');
 });
